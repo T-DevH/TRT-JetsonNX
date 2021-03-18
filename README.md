@@ -27,8 +27,9 @@ Examples demonstrating how to optimize caffe/tensorflow/darknet models with Tens
 * Run an optimized "ssd_mobilenet_v1_coco" object detector ("trt_ssd_async.py") on Jetson NX.
 * Run a very accurate optimized "MTCNN" face detector on Jetson NX.
 * Run an optimized "GoogLeNet" image classifier at "~16 ms per image (inference only)" on Jetson Nano.
-* In addition to Jetson NX, all demos work on Jetson TX2, AGX Xavier, Xavier Nano 
-* All demos work on x86_64 PC with NVIDIA GPU(s) as well.  Some minor tweaks would be needed.  Please refer to README_x86.md.
+* yolo3/yolo4 and SSD are evaluated mAP and FPS
+* Using INT8 and DLA core
+* **To test:** Demos should work on x86_64 platform with NVIDIA GPU(s) as well. Please refer to README_x86.md.
 
 
 Table of contents
