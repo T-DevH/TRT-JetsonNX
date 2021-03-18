@@ -1,5 +1,7 @@
 # TensorRt_demos
 
+Big thanks to XXXXXXXXXX who provided most of the scripts in this repo
+
 TensorRT(TRT) is an SDK for optimizing trained deep learning models to enable high-performance inference. TRT contains a deep learning inference **optimizer** for trained deep learning models and an optimized **runtime** for execution. Once you have trained your deep learning network in any specific framnework, TRT enables you to inference it with higher throughtput and lower latency.
 
 ![What is TRT](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/whatistrt2.png)
@@ -192,18 +194,18 @@ Demo #4: YOLOv3
 Demo #5: YOLOv4
 ---------------
 
-Along the same line as Demo #3, these 2 demos showcase how to convert pre-trained yolov3 and yolov4 models through ONNX to TensorRT engines.  The code for these 2 demos has gone through some significant changes.  More specifically, I have recently updated the implementation with a "yolo_layer" plugin to speed up inference time of the yolov3/yolov4 models.
+These 2 demos showcase how to convert pre-trained yolov3 and yolov4 models through ONNX to TensorRT engines. Part of the implementation consists of a "yolo_layer" plugin to speed up inference time of the 2 (yolov3/yolov4) models.
 
-My current "yolo_layer" plugin implementation is based on TensorRT's [IPluginV2IOExt](https://docs.nvidia.com/deeplearning/tensorrt/api/c_api/classnvinfer1_1_1_i_plugin_v2_i_o_ext.html).  It only works for **TensorRT 6+**.  I'm thinking about updating the code to support TensorRT 5 if I have time late on.
+The "yolo_layer" plugin implementation is based on TensorRT's [IPluginV2IOExt](https://docs.nvidia.com/deeplearning/tensorrt/api/c_api/classnvinfer1_1_1_i_plugin_v2_i_o_ext.html).  
 
-I developed my "yolo_layer" plugin by referencing similar plugin code by [wang-xinyu](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov4) and [dongfangduoshou123](https://github.com/dongfangduoshou123/YoloV3-TensorRT/blob/master/seralizeEngineFromPythonAPI.py).  So big thanks to both of them.
+Similar plugin code by [wang-xinyu](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov4) and [dongfangduoshou123](https://github.com/dongfangduoshou123/YoloV3-TensorRT/blob/master/seralizeEngineFromPythonAPI.py).  So big thanks to both of them.
 
-Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", follow these steps:
+Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", follow these steps:
 
 1. Install "pycuda" in case you haven't done so in Demo #3.  Note that the installation script resides in the "ssd" folder.
 
    ```shell
-   $ cd ${HOME}/project/tensorrt_demos/ssd
+   $ cd ${HOME}/project/TRT-JetsonNX/ssd
    $ ./install_pycuda.sh
    ```
 
@@ -220,36 +222,32 @@ Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", fo
    $ make
    ```
 
-4. Download the pre-trained yolov3/yolov4 COCO models and convert the targeted model to ONNX and then to TensorRT engine.  I use "yolov4-416" as example below.  (Supported models: "yolov3-tiny-288", "yolov3-tiny-416", "yolov3-288", "yolov3-416", "yolov3-608", "yolov3-spp-288", "yolov3-spp-416", "yolov3-spp-608", "yolov4-tiny-288", "yolov4-tiny-416", "yolov4-288", "yolov4-416", "yolov4-608", and [custom models](https://jkjung-avt.github.io/trt-yolov3-custom/) such as "yolov4-416x256".)
+4. Download the pre-trained yolov3/yolov4 COCO models and convert the targeted model to ONNX and then to TensorRT engine.  I use "yolov4-416" as example below.  (Supported models: "yolov3-tiny-288", "yolov3-tiny-416", "yolov3-288", "yolov3-416", "yolov3-608", "yolov3-spp-288", "yolov3-spp-416", "yolov3-spp-608", "yolov4-tiny-288", "yolov4-tiny-416", "yolov4-288", "yolov4-416", "yolov4-608".
 
    ```shell
-   $ cd ${HOME}/project/tensorrt_demos/yolo
+   $ cd ${HOME}/project/TRT-JetsonNX/yolo
    $ ./download_yolo.sh
    $ python3 yolo_to_onnx.py -m yolov4-416
    $ python3 onnx_to_tensorrt.py -m yolov4-416
    ```
 
-   The last step ("onnx_to_tensorrt.py") takes a little bit more than half an hour to complete on my Jetson Nano DevKit.  When that is done, the optimized TensorRT engine would be saved as "yolov4-416.trt".
+   The next step ("onnx_to_tensorrt.py"). When done, the optimized TensorRT engine would be saved as "yolov4-416.trt".
 
-5. Test the TensorRT "yolov4-416" engine with the "dog.jpg" image.
+5. Test the TensorRT "yolov4-416" engine with the "usb camera" image.
 
    ```shell
-   $ cd ${HOME}/project/tensorrt_demos
-   $ wget https://raw.githubusercontent.com/pjreddie/darknet/master/data/dog.jpg -O ${HOME}/Pictures/dog.jpg
+   $ cd ${HOME}/project/TRT-JetsonNX
    $ python3 trt_yolo.py --image ${HOME}/Pictures/dog.jpg \
                          -m yolov4-416
    ```
 
-   This is a screenshot of the demo against JetPack-4.4, i.e. TensorRT 7.
+   This is a screenshot of the demo.
 
-   !["yolov4-416" detection result on dog.jpg](doc/dog_trt_yolov4_416.jpg)
+   !["yolov4-416" detection](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/yolo4-1.png)
 
 6. The "trt_yolo.py" demo program could also take various image inputs.  Refer to step 5 in Demo #1 again.
 
-   For example, I tested my own custom trained ["yolov4-crowdhuman-416x416"](https://github.com/jkjung-avt/yolov4_crowdhuman) TensorRT engine with the "Avengers: Infinity War" movie trailer:
-
-   [![Testing with the Avengers: Infinity War trailer](https://raw.githubusercontent.com/jkjung-avt/yolov4_crowdhuman/master/doc/infinity_war.jpg)](https://youtu.be/7Qr_Fq18FgM)
-
+ 
 7. (Optional) Test other models than "yolov4-416".
 
 8. (Optional) If you would like to stream TensorRT YOLO detection output over the network and view the results on a remote host, check out my [trt_yolo_mjpeg.py example](https://github.com/jkjung-avt/tensorrt_demos/issues/226).
