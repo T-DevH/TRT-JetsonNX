@@ -92,9 +92,9 @@ Step-by-step:
    $ python3 trt_googlenet.py --usb 0 --width 1280 --height 720
    ```
 
-   Here's a screenshot of the demo (JetPack-4.2.2, i.e. TensorRT 5).
+   Here's a screenshot of the demo.
 
-   ![A picture of a golden retriever](https://raw.githubusercontent.com/jkjung-avt/tensorrt_demos/master/doc/golden_retriever.png)
+   ![GoogleNet demo](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/GoogleNet.png)
 
 5. The demo program supports 5 different image/video inputs.  You could do `python3 trt_googlenet.py --help` to read the help messages.  Or more specifically, the following inputs could be specified:
 
@@ -107,10 +107,6 @@ Step-by-step:
    In additional, you could use `--width` and `--height` to specify the desired input image size, and use `--do_resize` to force resizing of image/video file source.
 
    The `--usb`, `--rtsp` and `--onboard` video sources usually produce image frames at 30 FPS.  If the TensorRT engine inference code runs faster than that (which happens easily on a x86_64 PC with a good GPU), one particular image could be inferenced multiple times before the next image frame becomes available.  This causes problem in the object detector demos, since the original image could have been altered (bounding boxes drawn) and the altered image is taken for inference again.  To cope with this problem, use the optional `--copy_frame` flag to force copying/cloning image frames internally.
-
-6. Check out my blog post for implementation details:
-
-   * [Running TensorRT Optimized GoogLeNet on Jetson Nano](https://jkjung-avt.github.io/tensorrt-googlenet/)
 
 <a name="mtcnn"></a>
 Demo #2: MTCNN
