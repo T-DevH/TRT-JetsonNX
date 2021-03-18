@@ -261,6 +261,9 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
    ```shell
    $ python3 eval_yolo.py -m yolov4-416
+   ```
+   
+   ```shell
    Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.459
    Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.700
    Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.496
@@ -276,7 +279,7 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
    None
    ```
 
-   I evaluated the following TensorRT yolov3/yolov4 engines with COCO "val2017" data and got the following results.  I also checked the FPS (frames per second) numbers on my Jetson NX DevKit with JetPack-4.4 (TensorRT 7).
+   Performance of different TensorRT yolov3/yolov4 engines with COCO "val2017" data  including FPS (frames per second) on the Jetson NX DevKit with JetPack-4.4 (TensorRT 7).
 
    | TensorRT engine        | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on Nano |
    |:-----------------------|:---------------------:|:------------------:|:-----------:|
