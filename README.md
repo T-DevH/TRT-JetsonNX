@@ -237,8 +237,7 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
    ```shell
    $ cd ${HOME}/project/TRT-JetsonNX
-   $ python3 trt_yolo.py --image ${HOME}/Pictures/dog.jpg \
-                         -m yolov4-416
+   $ python3 trt_yolo.py --usb 0 -m yolov4-416
    ```
 
    This is a screenshot of the demo.
@@ -248,11 +247,16 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 6. The "trt_yolo.py" demo program could also take various image inputs.  Refer to step 5 in Demo #1 again.
 
  
-7. (Optional) Test other models than "yolov4-416".
+7. Other models than "yolov4-416"can be tested.
 
-8. (Optional) If you would like to stream TensorRT YOLO detection output over the network and view the results on a remote host, check out my [trt_yolo_mjpeg.py example](https://github.com/jkjung-avt/tensorrt_demos/issues/226).
+8. (Optional) I didn't test this, streaming TensorRT YOLO detection output over a network and view the results on a remote host, 
+    
+    ```shell
+    $ python3 trt_yolo_mjpeg.py --usb 0 --copy_frame -m yolov4-416
+    ```
+    Then check out the output in a web browser (http://<ip addr>:8080)
 
-9. Similar to step 5 of Demo #3, I created an "eval_yolo.py" for evaluating mAP of the TensorRT yolov3/yolov4 engines.  Refer to [README_mAP.md](README_mAP.md) for details.
+9. Similar to step 5 of Demo #3, "eval_yolo.py" for evaluating mAP of the TensorRT yolov3/yolov4 engines.  Refer to [README_mAP.md](README_mAP.md) for details.
 
    ```shell
    $ python3 eval_yolo.py -m yolov3-tiny-288
