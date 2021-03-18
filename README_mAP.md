@@ -57,7 +57,7 @@ The script takes 1 mandatory argument: either 'ssd_mobilenet_v1_coco' or 'ssd_mo
 * `--imgs_dir IMGS_DIR`: to specify an alternative directory for reading image files.
 * `--annotations ANNOTATIONS`: to specify an alternative annotation/label file.
 
-For example, I evaluated both 'ssd_mobilenet_v1_coco' and 'ssd_mobilenet_v2_coco' TensorRT engines on my Jetson NX and got these results.  The overall mAP values are `0.230` and `0.246`, respectively.
+For example, I evaluated both 'ssd_mobilenet_v1_coco' and 'ssd_mobilenet_v2_coco' TensorRT engines on my Jetson NX and got these results.  The overall mAP values are `0.232` and `0.248`, respectively.
 
 ```shell
 $ python3 eval_ssd.py --mode trt ssd_mobilenet_v1_coco
