@@ -114,9 +114,9 @@ Demo #2: MTCNN
 
 This demo builds upon the previous one.  It converts 3 sets of prototxt and caffemodel files into 3 TensorRT engines, namely the PNet, RNet and ONet.  Then it combines the 3 engine files to implement MTCNN, a very good face detector.
 
-Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", follow these steps:
+Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", follow these steps:
 
-1. Build the TensorRT engines from the pre-trained MTCNN model.  (Refer to [mtcnn/README.md](https://github.com/jkjung-avt/tensorrt_demos/blob/master/mtcnn/README.md) for more information about the prototxt and caffemodel files.)
+1. Build the TensorRT engines from the pre-trained MTCNN model.  (Refer to [mtcnn/README.md](https://github.com/T-DevH/TRT-JetsonNX/blob/master/mtcnn/README.md) for more information about the prototxt and caffemodel files.)
 
    ```shell
    $ cd ${HOME}/project/tensorrt_demos/mtcnn
@@ -133,16 +133,12 @@ Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", fo
    $ python3 trt_mtcnn.py --image ${HOME}/Pictures/avengers.jpg
    ```
 
-   Here's the result (JetPack-4.2.2, i.e. TensorRT 5).
+   Here's the result:
 
-   ![Avengers faces detected](https://raw.githubusercontent.com/jkjung-avt/tensorrt_demos/master/doc/avengers.png)
+   ![My face detect](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/MTCNN.png)
 
 4. The "trt_mtcnn.py" demo program could also take various image inputs.  Refer to step 5 in Demo #1 for details.
 
-5. Check out my related blog posts:
-
-   * [TensorRT MTCNN Face Detector](https://jkjung-avt.github.io/tensorrt-mtcnn/)
-   * [Optimizing TensorRT MTCNN](https://jkjung-avt.github.io/optimize-mtcnn/)
 
 <a name="ssd"></a>
 Demo #3: SSD
@@ -150,9 +146,7 @@ Demo #3: SSD
 
 This demo shows how to convert pre-trained tensorflow Single-Shot Multibox Detector (SSD) models through UFF to TensorRT engines, and to do real-time object detection with the TensorRT engines.
 
-NOTE: This particular demo requires TensorRT "Python API", which is only available in TensorRT 5.x+ on the Jetson systems.  In other words, this demo only works on Jetson systems properly set up with JetPack-4.2+, but **not** JetPack-3.x or earlier versions.
-
-Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", follow these steps:
+Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", follow these steps:
 
 1. Install requirements (pycuda, etc.) and build TensorRT engines from the pre-trained SSD models.
 
@@ -162,48 +156,21 @@ Assuming this repository has been cloned at "${HOME}/project/tensorrt_demos", fo
    $ ./build_engines.sh
    ```
 
-   NOTE: On my Jetson Nano DevKit with TensorRT 5.1.6, the version number of UFF converter was "0.6.3".  When I ran "build_engine.py", the UFF library actually printed out: `UFF has been tested with tensorflow 1.12.0. Other versions are not guaranteed to work.`  So I would strongly suggest you to use **tensorflow 1.12.x** (or whatever matching version for the UFF library installed on your system) when converting pb to uff.
-
-2. Run the "trt_ssd.py" demo program.  The demo supports 4 models: "ssd_mobilenet_v1_coco", "ssd_mobilenet_v1_egohands", "ssd_mobilenet_v2_coco", or "ssd_mobilenet_v2_egohands".  For example, I tested the "ssd_mobilenet_v1_coco" model with the "huskies" picture.
+2. Run the "trt_ssd.py" demo program.  The demo supports 4 models: "ssd_mobilenet_v1_coco", "ssd_mobilenet_v1_egohands", "ssd_mobilenet_v2_coco", or "ssd_mobilenet_v2_egohands".  
 
    ```shell
-   $ cd ${HOME}/project/tensorrt_demos
-   $ python3 trt_ssd.py --image ${HOME}/project/tf_trt_models/examples/detection/data/huskies.jpg \
-                        --model ssd_mobilenet_v1_coco
+   $ cd ${HOME}/project/TRT-JetsonNX
+   $ python3 trt_ssd_async.py --usb 0 --width 1280 --height 720 --model ssd_mobilenet_v1_coco
    ```
 
-   Here's the result (JetPack-4.2.2, i.e. TensorRT 5).  Frame rate was good (over 20 FPS).
+   Here's the result of the "async" version of SSD:
 
-   ![Huskies detected](https://raw.githubusercontent.com/jkjung-avt/tensorrt_demos/master/doc/huskies.png)
+   ![T-DevH detected](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/SSD.png)
 
-   NOTE: When running this demo with TensorRT 6 (JetPack-4.3) on the Jetson Nano, I encountered the following error message which could probably be ignored for now.  Quote from [NVIDIA's NVES_R](https://devtalk.nvidia.com/default/topic/1065233/tensorrt/-tensorrt-error-could-not-register-plugin-creator-flattenconcat_trt-in-namespace-/post/5394191/#5394191): `This is a known issue and will be fixed in a future version.`
-
-   ```
-   [TensorRT] ERROR: Could not register plugin creator: FlattenConcat_TRT in namespace
-   ```
-
-   I also tested the "ssd_mobilenet_v1_egohands" (hand detector) model with a video clip from YouTube, and got the following result.  Again, frame rate was pretty good.  But the detection didn't seem very accurate though :-(
-
-   ```shell
-   $ python3 trt_ssd.py --video ${HOME}/Videos/Nonverbal_Communication.mp4 \
-                        --model ssd_mobilenet_v1_egohands
-   ```
-
-   (Click on the image below to see the whole video clip...)
-
-   [![Hands detected](https://raw.githubusercontent.com/jkjung-avt/tensorrt_demos/master/doc/hands.png)](https://youtu.be/3ieN5BBdDF0)
 
 3. The "trt_ssd.py" demo program could also take various image inputs.  Refer to step 5 in Demo #1 again.
 
-4. Referring to this comment, ["#TODO enable video pipeline"](https://github.com/AastaNV/TRT_object_detection/blob/master/main.py#L78), in the original TRT_object_detection code, I did implement an "async" version of ssd detection code to do just that.  When I tested "ssd_mobilenet_v1_coco" on the same huskies image with the async demo program on the Jetson Nano DevKit, frame rate improved 3~4 FPS.
-
-   ```shell
-   $ cd ${HOME}/project/tensorrt_demos
-   $ python3 trt_ssd_async.py --image ${HOME}/project/tf_trt_models/examples/detection/data/huskies.jpg \
-                              --model ssd_mobilenet_v1_coco
-   ```
-
-5. To verify accuracy (mAP) of the optimized TensorRT engines and make sure they do not degrade too much (due to reduced floating-point precision of "FP16") from the original TensorFlow frozen inference graphs, you could prepare validation data and run "eval_ssd.py".  Refer to [README_mAP.md](README_mAP.md) for details.
+4. To verify accuracy (mAP) of the optimized TensorRT engines and make sure they do not degrade too much (due to reduced floating-point precision of "FP16") from the original TensorFlow frozen inference graphs, you could prepare validation data and run "eval_ssd.py".  Refer to [README_mAP.md](README_mAP.md) for details.
 
    I compared mAP of the TensorRT engine and the original tensorflow model for both "ssd_mobilenet_v1_coco" and "ssd_mobilenet_v2_coco" using COCO "val2017" data.  The results were good.  In both cases, mAP of the optimized TensorRT engine matched the original tensorflow model.  The FPS (frames per second) numbers in the table were measured using "trt_ssd_async.py" on my Jetson Nano DevKit with JetPack-4.3.
 
