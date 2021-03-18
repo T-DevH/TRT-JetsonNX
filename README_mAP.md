@@ -57,25 +57,28 @@ The script takes 1 mandatory argument: either 'ssd_mobilenet_v1_coco' or 'ssd_mo
 * `--imgs_dir IMGS_DIR`: to specify an alternative directory for reading image files.
 * `--annotations ANNOTATIONS`: to specify an alternative annotation/label file.
 
-For example, I evaluated both 'ssd_mobilenet_v1_coco' and 'ssd_mobilenet_v2_coco' TensorRT engines on my x86_64 PC and got these results.  The overall mAP values are `0.230` and `0.246`, respectively.
+For example, I evaluated both 'ssd_mobilenet_v1_coco' and 'ssd_mobilenet_v2_coco' TensorRT engines on my Jetson NX and got these results.  The overall mAP values are `0.230` and `0.246`, respectively.
 
 ```shell
 $ python3 eval_ssd.py --mode trt ssd_mobilenet_v1_coco
-......
-100% (5000 of 5000) |####################| Elapsed Time: 0:00:26 Time:  0:00:26
+Matplotlib created a temporary config/cache directory at /tmp/matplotlib-k20lszmr because the default path (/home/thdev-jetson/.cache/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+2021-03-18 12:38:20.692420: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.2
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+[TensorRT] WARNING: Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+100% (5000 of 5000) |################################################################################################################################################| Elapsed Time: 0:01:53 Time:  0:01:53
 loading annotations into memory...
-Done (t=0.36s)
+Done (t=1.73s)
 creating index...
 index created!
 Loading and preparing results...
-DONE (t=0.11s)
+DONE (t=0.66s)
 creating index...
 index created!
 Running per image evaluation...
 Evaluate annotation type *bbox*
-DONE (t=8.89s).
+DONE (t=43.81s).
 Accumulating evaluation results...
-DONE (t=1.37s).
+DONE (t=7.80s).
  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.232
  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.351
  Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.254
@@ -87,36 +90,41 @@ DONE (t=1.37s).
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.264
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.022
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.191
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.606
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.607
 None
+
 $
 $ python3 eval_ssd.py --mode trt ssd_mobilenet_v2_coco
-......
-100% (5000 of 5000) |####################| Elapsed Time: 0:00:29 Time:  0:00:29
+Matplotlib created a temporary config/cache directory at /tmp/matplotlib-8cujmbbl because the default path (/home/thdev-jetson/.cache/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+2021-03-18 12:46:52.159237: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.2
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+[TensorRT] WARNING: Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+100% (5000 of 5000) |################################################################################################################################################| Elapsed Time: 0:01:53 Time:  0:01:53
 loading annotations into memory...
-Done (t=0.37s)
+Done (t=1.64s)
 creating index...
 index created!
 Loading and preparing results...
-DONE (t=0.12s)
+DONE (t=0.61s)
 creating index...
 index created!
 Running per image evaluation...
 Evaluate annotation type *bbox*
-DONE (t=9.47s).
+DONE (t=44.77s).
 Accumulating evaluation results...
-DONE (t=1.42s).
+DONE (t=7.62s).
  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.248
  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.375
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.273
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.272
  Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.021
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.176
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.573
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.175
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.571
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.221
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.278
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.279
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.027
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.202
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.643
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.201
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.641
 None
+
 ```
