@@ -259,37 +259,30 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 9. Similar to step 5 of Demo #3, "eval_yolo.py" for evaluating mAP of the TensorRT yolov3/yolov4 engines.  Refer to [README_mAP.md](README_mAP.md) for details.
 
    ```shell
-   $ python3 eval_yolo.py -m yolov3-tiny-288
-   $ python3 eval_yolo.py -m yolov4-tiny-416
+   $ python3 eval_yolo.py -m yolov4-416
    ......
    $ python3 eval_yolo.py -m yolov4-608
    ```
 
-   I evaluated all these TensorRT yolov3/yolov4 engines with COCO "val2017" data and got the following results.  I also checked the FPS (frames per second) numbers on my Jetson Nano DevKit with JetPack-4.4 (TensorRT 7).
+   I evaluated the following TensorRT yolov3/yolov4 engines with COCO "val2017" data and got the following results.  I also checked the FPS (frames per second) numbers on my Jetson NX DevKit with JetPack-4.4 (TensorRT 7).
 
    | TensorRT engine        | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on Nano |
    |:-----------------------|:---------------------:|:------------------:|:-----------:|
-   | yolov3-tiny-288 (FP16) |         0.077         |        0.158       |     35.8    |
-   | yolov3-tiny-416 (FP16) |         0.096         |        0.202       |     25.5    |
-   | yolov3-288 (FP16)      |         0.331         |        0.601       |     8.16    |
-   | yolov3-416 (FP16)      |         0.373         |        0.664       |     4.93    |
-   | yolov3-608 (FP16)      |         0.376         |        0.665       |     2.53    |
-   | yolov3-spp-288 (FP16)  |         0.339         |        0.594       |     8.16    |
-   | yolov3-spp-416 (FP16)  |         0.391         |        0.664       |     4.82    |
-   | yolov3-spp-608 (FP16)  |         0.410         |        0.685       |     2.49    |
-   | yolov4-tiny-288 (FP16) |         0.179         |        0.344       |     36.6    |
-   | yolov4-tiny-416 (FP16) |         0.196         |        0.387       |     25.5    |
-   | yolov4-288 (FP16)      |         0.376         |        0.591       |     7.93    |
-   | yolov4-416 (FP16)      |         0.459         |        0.700       |     4.62    |
-   | yolov4-608 (FP16)      |         0.488         |        0.736       |     2.35    |
+   | yolov3-tiny-288 (FP16) |                       |                    |             |
+   | yolov3-tiny-416 (FP16) |                       |                    |             |
+   | yolov3-288 (FP16)      |                       |                    |             |
+   | yolov3-416 (FP16)      |                       |                    |             |
+   | yolov3-608 (FP16)      |                       |                    |             |
+   | yolov3-spp-288 (FP16)  |                       |                    |             |
+   | yolov3-spp-416 (FP16)  |                       |                    |             |
+   | yolov3-spp-608 (FP16)  |                       |                    |             |
+   | yolov4-tiny-288 (FP16) |                       |                    |             |
+   | yolov4-tiny-416 (FP16) |                       |                    |             |
+   | yolov4-288 (FP16)      |                       |                    |             |
+   | yolov4-416 (FP16)      |                       |                    |             |
+   | yolov4-608 (FP16)      |                       |                    |             |
 
-10. Check out my blog posts for implementation details:
 
-   * [TensorRT ONNX YOLOv3](https://jkjung-avt.github.io/tensorrt-yolov3/)
-   * [TensorRT YOLOv4](https://jkjung-avt.github.io/tensorrt-yolov4/)
-   * [Verifying mAP of TensorRT Optimized SSD and YOLOv3 Models](https://jkjung-avt.github.io/trt-detection-map/)
-   * For training your own custom yolov4 model: [Custom YOLOv4 Model on Google Colab](https://jkjung-avt.github.io/colab-yolov4/)
-   * For adapting the code to your own custom trained yolov3/yolov4 models: [TensorRT YOLOv3 For Custom Trained Models](https://jkjung-avt.github.io/trt-yolov3-custom/)
 
 <a name="int8_and_dla"></a>
 Demo #6: Using INT8 and DLA core
