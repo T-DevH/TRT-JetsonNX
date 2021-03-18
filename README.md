@@ -1,10 +1,21 @@
-# Tensorrt_demos
+# TensorRt_demos
 
 TensorRT(TRT) is an SDK for optimizing trained deep learning models to enable high-performance inference. TRT contains a deep learning inference **optimizer** for trained deep learning models and an optimized **runtime** for execution. Once you have trained your deep learning network in any specific framnework, TRT enables you to inference it with higher throughtput and lower latency.
+
+![What is TRT](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/whatistrt2.png)
 
 TRT has two parts:
 * **Conversion paths**: The different paths users can follow to convert models to optimized TRT engines
 * **Runtime options**: Different runtimes users can target with TRT when deploying the optimized TRT engines.
+
+5 key technologies TRT implements to output an optimized inference server:
+* Layer and tensor fusion
+* Kernel auto-tuning
+* Multi-stream execution
+* Dynamic tensor memory
+* Precision calibration
+
+![TRT technologies](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/TRTtech.png)
 
 
 Examples demonstrating how to optimize caffe/tensorflow/darknet models with TensorRT and run inferencing on NVIDIA Jetson NX.
@@ -17,7 +28,6 @@ Examples demonstrating how to optimize caffe/tensorflow/darknet models with Tens
 * In addition to Jetson NX, all demos work on Jetson TX2, AGX Xavier, Xavier Nano 
 * All demos work on x86_64 PC with NVIDIA GPU(s) as well.  Some minor tweaks would be needed.  Please refer to README_x86.md.
 
-**[2020-08-18 update]**  I have optimized my "Camera" module code.  As a result, the FPS numbers of the TensorRT yolov3/yolov4 models have been improved.  With this particular update, I've also simplified the command-line arguments and the API of the Camera.  Please refer to step 5 of Demo #1 for details.
 
 Table of contents
 -----------------
@@ -34,38 +44,14 @@ Table of contents
 Prerequisite
 ------------
 
-The code in this repository was tested on Jetson Nano, TX2, and Xavier NX DevKits.  In order to run the demos below, first make sure you have the proper version of image (JetPack) installed on the target Jetson system.  For example, [Setting up Jetson Nano: The Basics](https://jkjung-avt.github.io/setting-up-nano/) and [Setting up Jetson Xavier NX](https://jkjung-avt.github.io/setting-up-xavier-nx/).
+The code in this repository was Xavier NX DevKits.  In order to run the demos below, in my experiments I used Jetpack 4.4: [Setting up Jetson Xavier NX](https://github.com/T-DevH/Jetson-NX).
 
-More specifically, the target Jetson system must have TensorRT libraries installed.
+Demo programs in this repository require "cv2" (OpenCV) module for python3.  "cv2" module comeme pre-installed in the JetPack.  
 
-* Demo #1 and Demo #2: works for TensorRT 3.x+,
-* Demo #3: requires TensoRT 5.x+,
-* Demo #4 and Demo #5: requires TensorRT 6.x+.
-* Demo #6 part 1: INT8 requires TensorRT 6.x+ and only works on GPUs with CUDA compute 6.1+.
-* Demo #6 part 2: DLA core requires TensorRT 7.x+ (is only tested on Jetson Xavier NX).
+Running Demo #3 (SSD) requires to have "tensorflow-1.x" installed. You could probably use the [official tensorflow wheels provided by NVIDIA](https://docs.nvidia.com/deeplearning/frameworks/pdf/Install-TensorFlow-Jetson-Platform.pdf)
 
-You could check which version of TensorRT has been installed on your Jetson system by looking at file names of the libraries.  For example, TensorRT v5.1.6 (JetPack-4.2.2) was present on one of my Jetson Nano DevKits.
+Demo #4 and Demo #5, you'd need to have "protobuf" installed.  I recommend installing "protobuf-3.8.0",[Setting up Jetson Xavier NX](https://github.com/T-DevH/Jetson-NX).  
 
-```shell
-$ ls /usr/lib/aarch64-linux-gnu/libnvinfer.so*
-/usr/lib/aarch64-linux-gnu/libnvinfer.so
-/usr/lib/aarch64-linux-gnu/libnvinfer.so.5
-/usr/lib/aarch64-linux-gnu/libnvinfer.so.5.1.6
-```
-
-Furthermore, all demo programs in this repository require "cv2" (OpenCV) module for python3.  You could use the "cv2" module which came in the JetPack.  Or, if you'd prefer building your own, refer to [Installing OpenCV 3.4.6 on Jetson Nano](https://jkjung-avt.github.io/opencv-on-nano/) for how to build from source and install opencv-3.4.6 on your Jetson system.
-
-If you plan to run Demo #3 (SSD), you'd also need to have "tensorflow-1.x" installed.  You could probably use the [official tensorflow wheels provided by NVIDIA](https://docs.nvidia.com/deeplearning/frameworks/pdf/Install-TensorFlow-Jetson-Platform.pdf), or refer to [Building TensorFlow 1.12.2 on Jetson Nano](https://jkjung-avt.github.io/build-tensorflow-1.12.2/) for how to install tensorflow-1.12.2 on the Jetson system.
-
-Or if you plan to run Demo #4 and Demo #5, you'd need to have "protobuf" installed.  I recommend installing "protobuf-3.8.0" using my [install_protobuf-3.8.0.sh](https://github.com/jkjung-avt/jetson_nano/blob/master/install_protobuf-3.8.0.sh) script.  This script would take a couple of hours on a Jetson system.  Alternatively, pip3 install a recent version of "protobuf" should also work (but might run a little bit slowlier).
-
-I use Python 3.6 as my primary test environment.  I think other versions of python3 would likely just work without any problem.
-
-In case you are setting up a Jetson Nano or Jetson Xavier NX from scratch to run these demos, you could refer to the following blog posts.  They contain the exact steps I applied when I did the testing of JetPack-4.3 and JetPack-4.4.
-
-* [JetPack-4.3 for Jetson Nano](https://jkjung-avt.github.io/jetpack-4.3/)
-* [JetPack-4.4 for Jetson Nano](https://jkjung-avt.github.io/jetpack-4.4/)
-* [Setting up Jetson Xavier NX](https://jkjung-avt.github.io/setting-up-xavier-nx/)
 
 <a name="googlenet"></a>
 Demo #1: GoogLeNet
