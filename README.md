@@ -261,8 +261,19 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
    ```shell
    $ python3 eval_yolo.py -m yolov4-416
-   ......
-   $ python3 eval_yolo.py -m yolov4-608
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.459
+   Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.700
+   Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.496
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.256
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.517
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.627
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.342
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.531
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.554
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.331
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.617
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.744
+   None
    ```
 
    I evaluated the following TensorRT yolov3/yolov4 engines with COCO "val2017" data and got the following results.  I also checked the FPS (frames per second) numbers on my Jetson NX DevKit with JetPack-4.4 (TensorRT 7).
