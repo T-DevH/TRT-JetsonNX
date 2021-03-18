@@ -1,4 +1,4 @@
-# tensorrt_demos
+# Tensorrt_demos
 
 TensorRT(TRT) is an SDK for optimizing trained deep learning models to enable high-performance inference. TRT contains a deep learning inference **optimizer** for trained deep learning models and an optimized **runtime** for execution. Once you have trained your deep learning network in any specific framnework, TRT enables you to inference it with higher throughtput and lower latency.
 
