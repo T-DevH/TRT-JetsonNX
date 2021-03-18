@@ -44,7 +44,7 @@ Table of contents
 Prerequisite
 ------------
 
-The code in this repository was Xavier NX DevKits.  In order to run the demos below, in my experiments I used Jetpack 4.4: [Setting up Jetson Xavier NX](https://github.com/T-DevH/Jetson-NX).
+The code in this repository was tested on Xavier NX DevKits.  In order to run the demos below, in my experiments I used Jetpack 4.4: [Setting up Jetson Xavier NX](https://github.com/T-DevH/Jetson-NX).
 
 Demo programs in this repository require "cv2" (OpenCV) module for python3.  "cv2" module comeme pre-installed in the JetPack.  
 
