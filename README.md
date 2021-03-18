@@ -1,5 +1,12 @@
 # tensorrt_demos
 
+TensorRT(TRT) is an SDK for optimizing trained deep learning models to enable high-performance inference. TRT contains a deep learning inference **optimizer** for trained deep learning models and an optimized **runtime** for execution. Once you have trained your deep learning network in any specific framnework, TRT enables you to inference it with higher throughtput and lower latency.
+
+TRT has two parts:
+* **Conversion paths**: The different paths users can follow to convert models to optimized TRT engines
+* **Runtime options**: Different runtimes users can target with TRT when deploying the optimized TRT engines.
+
+
 Examples demonstrating how to optimize caffe/tensorflow/darknet models with TensorRT and run inferencing on NVIDIA Jetson NX.
 
 * Run an optimized "yolov4-416" object detector on Jetson NX.
