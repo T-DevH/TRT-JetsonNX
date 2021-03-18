@@ -172,21 +172,15 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
 4. To verify accuracy (mAP) of the optimized TensorRT engines and make sure they do not degrade too much (due to reduced floating-point precision of "FP16") from the original TensorFlow frozen inference graphs, you could prepare validation data and run "eval_ssd.py".  Refer to [README_mAP.md](README_mAP.md) for details.
 
-   I compared mAP of the TensorRT engine and the original tensorflow model for both "ssd_mobilenet_v1_coco" and "ssd_mobilenet_v2_coco" using COCO "val2017" data.  The results were good.  In both cases, mAP of the optimized TensorRT engine matched the original tensorflow model.  The FPS (frames per second) numbers in the table were measured using "trt_ssd_async.py" on my Jetson Nano DevKit with JetPack-4.3.
+   I compared mAP of the TensorRT engine and the original tensorflow model for both "ssd_mobilenet_v1_coco" and "ssd_mobilenet_v2_coco" using COCO "val2017" data.  The results were good.  In both cases, mAP of the optimized TensorRT engine matched the original tensorflow model.  The FPS (frames per second) numbers in the table were measured using "trt_ssd_async.py" on my Jetson NX DevKit with JetPack-4.4.
 
-   | TensorRT engine         | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on Nano |
+   | TensorRT engine         | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on NX |
    |:------------------------|:---------------------:|:------------------:|:-----------:|
    | mobilenet_v1 TF         |          0.232        |        0.351       |      --     |
    | mobilenet_v1 TRT (FP16) |          0.232        |        0.351       |     27.7    |
    | mobilenet_v2 TF         |          0.248        |        0.375       |      --     |
    | mobilenet_v2 TRT (FP16) |          0.248        |        0.375       |     22.7    |
 
-6. Check out my blog posts for implementation details:
-
-   * [TensorRT UFF SSD](https://jkjung-avt.github.io/tensorrt-ssd/)
-   * [Speeding Up TensorRT UFF SSD](https://jkjung-avt.github.io/speed-up-trt-ssd/)
-   * [Verifying mAP of TensorRT Optimized SSD and YOLOv3 Models](https://jkjung-avt.github.io/trt-detection-map/)
-   * Or if you'd like to learn how to train your own custom object detectors which could be easily converted to TensorRT engines and inferenced with "trt_ssd.py" and "trt_ssd_async.py": [Training a Hand Detector with TensorFlow Object Detection API](https://jkjung-avt.github.io/hand-detection-tutorial/)
 
 <a name="YOLOv3"></a>
 Demo #4: YOLOv3
