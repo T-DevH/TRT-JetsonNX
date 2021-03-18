@@ -177,9 +177,9 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
    | TensorRT engine         | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on NX |
    |:------------------------|:---------------------:|:------------------:|:-----------:|
    | mobilenet_v1 TF         |          0.232        |        0.351       |      --     |
-   | mobilenet_v1 TRT (FP16) |          0.232        |        0.351       |     27.7    |
+   | mobilenet_v1 TRT (FP16) |          0.232        |        0.351       |     70.8    |
    | mobilenet_v2 TF         |          0.248        |        0.375       |      --     |
-   | mobilenet_v2 TRT (FP16) |          0.248        |        0.375       |     22.7    |
+   | mobilenet_v2 TRT (FP16) |          0.248        |        0.375       |     60.8    |
 
 
 <a name="YOLOv3"></a>
