@@ -281,7 +281,7 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
    Performance of different TensorRT yolov3/yolov4 engines with COCO "val2017" data  including FPS (frames per second) on the Jetson NX DevKit with JetPack-4.4 (TensorRT 7).
 
-   | TensorRT engine        | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on Nano |
+   | TensorRT engine        | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on NX |
    |:-----------------------|:---------------------:|:------------------:|:-----------:|
    | yolov3-tiny-288 (FP16) |                       |                    |             |
    | yolov3-tiny-416 (FP16) |                       |                    |             |
