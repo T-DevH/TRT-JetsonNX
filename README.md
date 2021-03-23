@@ -288,7 +288,7 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
    | yolov3-288 (FP16)      |        0.330          |      0.601         |             |
    | yolov3-416 (FP16)      |        0.373          |      0.664         |             |
    | yolov3-608 (FP16)      |        0.376          |      0.665         |             |
-   | yolov3-spp-288 (FP16)  |                       |                    |             |
+   | yolov3-spp-288 (FP16)  |        0.339          |      0.594         |             |
    | yolov3-spp-416 (FP16)  |                       |                    |             |
    | yolov3-spp-608 (FP16)  |                       |                    |             |
    | yolov4-tiny-288 (FP16) |                       |                    |             |
