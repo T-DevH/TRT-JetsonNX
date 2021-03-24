@@ -283,7 +283,7 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
 
    | TensorRT engine        | mAP @<br>IoU=0.5:0.95 |  mAP @<br>IoU=0.5  | FPS on NX |
    |:-----------------------|:---------------------:|:------------------:|:-----------:|
-   | yolov3-tiny-288 (FP16) |                       |                    |             |
+   | yolov3-tiny-288 (FP16) |        0.077          |      0.158         |             |
    | yolov3-tiny-416 (FP16) |                       |                    |             |
    | yolov3-288 (FP16)      |        0.330          |      0.601         |             |
    | yolov3-416 (FP16)      |        0.373          |      0.664         |             |
@@ -293,8 +293,8 @@ Assuming this repository has been cloned at "${HOME}/project/TRT-JetsonNX", foll
    | yolov3-spp-608 (FP16)  |        0.410          |      0.685         |             |
    | yolov4-tiny-288 (FP16) |                       |                    |             |
    | yolov4-tiny-416 (FP16) |                       |                    |             |
-   | yolov4-288 (FP16)      |       0.376           |      0.591         |             |
-   | yolov4-416 (FP16)      |       0.459           |      0.700         |             |
+   | yolov4-288 (FP16)      |        0.376          |      0.591         |             |
+   | yolov4-416 (FP16)      |        0.459          |      0.700         |             |
    | yolov4-608 (FP16)      |                       |                    |             |
 
 
