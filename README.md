@@ -313,9 +313,7 @@ Please make sure you have gone through the steps of [Demo #5](#yolov4) and are a
    $ cd ${HOME}/project/tensorrt_demos/yolo
    $ mkdir calib_images
    ### randomly pick and copy over 1,000 images from "val207"
-   $ for jpg in $(ls -1 ${HOME}/data/coco/images/val2017/*.jpg | sort -R | head -1000); do \
-       cp ${HOME}/data/coco/images/val2017/${jpg} calib_images/; \
-     done
+   $ find ${HOME}/data/coco/images/val2017/ -type f -name "*.jpg" -print0 | xargs -0 shuf -e -n 1000 -z | xargs -0 cp -vt ${HOME}/project/TRT-  JetsonNX/yolo/calib_images
    ```
 
    When this is done, the 1,000 images for calibration should be present in the "${HOME}/project/tensorrt_demos/yolo/calib_images/" directory.
