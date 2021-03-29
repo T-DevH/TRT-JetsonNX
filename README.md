@@ -339,17 +339,14 @@ Please make sure you have gone through the steps of [Demo #5](#yolov4) and are a
 
    ```shell
    $ cd ${HOME}/project/tensorrt_demos
-   $ python3 trt_yolo.py --image ${HOME}/Pictures/dog.jpg \
-                         -m yolov3-int8-608
+    python3 trt_yolo.py --usb 0 -m yolov3-int8-608
    ```
 
    (Optional) Also test the DLA0 and DLA1 TensorRT engines.
 
    ```shell
-   $ python3 trt_yolo.py --image ${HOME}/Pictures/dog.jpg \
-                         -m yolov3-dla0-608
-   $ python3 trt_yolo.py --image ${HOME}/Pictures/dog.jpg \
-                         -m yolov3-dla1-608
+   $ python3 trt_yolo.py --usb 0 -m yolov3-dla0-608
+   $ python3 trt_yolo.py --usb 0 -m yolov3-dla1-608
    ```
 
 5. Evaluate mAP of the INT8 and DLA TensorRT engines.
