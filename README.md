@@ -334,7 +334,7 @@ Please make sure you have gone through the steps of [Demo #5](#yolov4) and are a
    $ python3 onnx_to_tensorrt.py -v --int8 --dla_core 0 -m yolov3-dla0-608
    $ ln -s yolov3-608.cfg yolov3-dla1-608.cfg
    $ ln -s yolov3-608.onnx yolov3-dla1-608.onnx
-   $ python3 onnx_to_tensorrt.py -v --int8 --dla_core 1 -m yolov3-int8-608
+   $ python3 onnx_to_tensorrt.py -v --int8 --dla_core 1 -m yolov3-dla1-608
    ```
 
 4. Test the INT8 TensorRT engine with the "dog.jpg" image.
