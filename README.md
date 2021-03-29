@@ -1,7 +1,5 @@
 # TensorRt_demos
 
-Big thanks to XXXXXXXXXX who provided most of the scripts in this repo
-
 TensorRT(TRT) is an SDK for optimizing trained deep learning models to enable high-performance inference. TRT contains a deep learning inference **optimizer** for trained deep learning models and an optimized **runtime** for execution. Once you have trained your deep learning network in any specific framnework, TRT enables you to inference it with higher throughtput and lower latency.
 
 ![What is TRT](https://github.com/T-DevH/TRT-JetsonNX/blob/master/doc/whatistrt2.png)
@@ -384,11 +382,9 @@ Please make sure you have gone through the steps of [Demo #5](#yolov4) and are a
    | yolov4-tiny-416  |  0.196 / 0.387  |  0.190 / 0.376  |        X        |        X        |
    | yolov4-608       |  0.488 / 0.736  | *0.317 / 0.507* |  0.474 / 0.727  |  0.473 / 0.726  |
 
-7. Issues:
-
-   * For some reason, I'm not able to build DLA TensorRT engines for the "yolov4-tiny-416" model.  I have [reported the issue](https://forums.developer.nvidia.com/t/problem-building-tensorrt-engines-for-dla-core/155749) to NVIDIA.
-   * There is no method in TensorRT 7.1 Python API to specifically set DLA core at inference time.  I also [reported this issue](https://forums.developer.nvidia.com/t/no-method-in-tensorrt-python-api-for-setting-dla-core-for-inference/155874) to NVIDIA.  When testing, I simply deserialize the TensorRT engines onto Jetson Xavier NX.  I'm not 100% sure whether the engine is really executed on DLA core 0 or DLA core 1.
-   * mAP of the INT8 TensorRT engine of the "yolov4-608" model is not good.  Originally, I thought it was [an issue of TensorRT library's handling of "Concat" nodes](https://forums.developer.nvidia.com/t/concat-in-caffe-parser-is-wrong-when-working-with-int8-calibration/142639/3?u=jkjung13).  But after some more investigation, I saw that was not the case.  Currently, I'm still not sure what the problem is...
+7. Refferences:
+Big thanks to xxxxxxxxx who provided most of the scripts in this repo
+  
 
 Licenses
 --------
